@@ -1,45 +1,267 @@
-<!-- Please do not change this logo with link -->
+<!-- Please do not change this html logo with link -->
 
-[![MCHP](images/microchip.png)](https://www.microchip.com)
+<a href="https://www.microchip.com" rel="nofollow"><img src="images/microchip.png" alt="MCHP" width="300"/></a>
 
-# Update the title for pic18f56q71-opamp-metal-detector-mplab-mcc here
+# Proximity Metal Detector Using an Operational Amplifier (OPA) — User Case for PIC18F56Q71 Microcontroller with MCC Melody 
 
-<!-- This is where the introduction to the example goes, including mentioning the peripherals used -->
+This application uses an inductive sensor consisting of one capacitor and one inductive sensor placed in parallel. This application note shows how a proximity metal detector can be designed using the integrated OPA of the PIC18F Q71 family.
+
+<br><img src="images/MetalDetector-Prototype.png" height="600">
 
 ## Related Documentation
 
-<!-- Any information about an application note or tech brief can be linked here. Use unbreakable links!
-     In addition a link to the device family landing page and relevant peripheral pages as well:
-     - [AN3381 - Brushless DC Fan Speed Control Using Temperature Input and Tachometer Feedback](https://microchip.com/00003381/)
-     - [PIC18F-Q10 Family Product Page](https://www.microchip.com/design-centers/8-bit/pic-mcus/device-selection/pic18f-q10-product-family) -->
+More details and code examples on the PIC18F56Q71 can be found at the following links:
+
+- [PIC18F56Q71 Product Page](https://www.microchip.com/en-us/product/PIC18F56Q71)
+- [PIC18F56Q71 Code Examples on GitHub](https://github.com/microchip-pic-avr-examples/?q=pic18f56q71)
 
 ## Software Used
 
-<!-- All software used in this example must be listed here. Use unbreakable links!
-     - MPLAB® X IDE 5.30 or newer [(microchip.com/mplab/mplab-x-ide)](http://www.microchip.com/mplab/mplab-x-ide)
-     - MPLAB® XC8 2.10 or a newer compiler [(microchip.com/mplab/compilers)](http://www.microchip.com/mplab/compilers)
-     - MPLAB® Code Configurator (MCC) 3.95.0 or newer [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
-     - MPLAB® Code Configurator (MCC) Device Libraries PIC10 / PIC12 / PIC16 / PIC18 MCUs [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
-     - Microchip PIC18F-Q Series Device Support (1.4.109) or newer [(packs.download.microchip.com/)](https://packs.download.microchip.com/) -->
-
-- MPLAB® X IDE 6.0.0 or newer [(MPLAB® X IDE 6.0)](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-x-ide?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_MMTCha_MPAE_Examples&utm_content=pic18f56q71-opamp-metal-detector-mplab-mcc-github)
-- MPLAB® XC8 2.40.0 or newer compiler [(MPLAB® XC8 2.40)](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-xc-compilers?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_MMTCha_MPAE_Examples&utm_content=pic18f56q71-opamp-metal-detector-mplab-mcc-github)
+- [MPLAB® X IDE](http://www.microchip.com/mplab/mplab-x-ide) v6.00 or newer
+- [MPLAB® X IPE](https://www.microchip.com/en-us/tools-resources/production/mplab-integrated-programming-environment) v6.00 or newer
+- [MPLAB® XC8](http://www.microchip.com/mplab/compilers) v2.40 or newer
+- [PIC18F-Q Series Device Pack](https://packs.download.microchip.com/) v1.14.237 or newer
 
 ## Hardware Used
 
-<!-- All hardware used in this example must be listed here. Use unbreakable links!
-     - PIC18F47Q10 Curiosity Nano [(DM182029)](https://www.microchip.com/Developmenttools/ProductDetails/DM182029)
-     - Curiosity Nano Base for Click boards™ [(AC164162)](https://www.microchip.com/Developmenttools/ProductDetails/AC164162)
-     - POT Click board™ [(MIKROE-3402)](https://www.mikroe.com/pot-click) -->
+- The PIC18F56Q71 Curiosity Nano Development Board is used as a test platform:
+    <br><img src="images/PIC18F56Q71.png">
 
-## Setup
+- Curiosity Nano Adapter:
+    <br><img src="images/Curiosity-Nano-Adapter.jpg" height="400">
 
-<!-- Explain how to connect hardware and set up software. Depending on complexity, step-by-step instructions and/or tables and/or images can be used -->
+- PROTO CLICK Board:
+    <br><img src="images/proto-click.jpg" height="400">
+
+- 1x 1N4148 Diode
+
+- 2x 10uH Inductor
+
+- 2x 1kOhm Resistor
+
+- 2x 2.2nF Capacitor 50V
 
 ## Operation
 
-<!-- Explain how to operate the example. Depending on complexity, step-by-step instructions and/or tables and/or images can be used -->
+To program the Curiosity Nano board with this MPLAB® X project, follow the steps provided in the [How to Program the Curiosity Nano Board](#how-to-program-the-curiosity-nano-board) chapter.<br><br>
+
+## Working principle
+
+The metal detector operates based on the principle of electromagnetic induction. The LC sensor detects the metals using one inductor coil and one capacitor grouped in a parallel circuit. The LC circuit works like an electrical resonator, and it oscillates at the resonant frequency of the circuit using stored energy (Signal A). When a metal object approaches the proximity of a varying magnetic field generated by the inductor coil, currents are induced in the metal object. 
+<br>The Eddy currents induce their own magnetic field. The oscillating signal will attenuate faster, due to the energy absorbed by the currents within the metal. The signal period will be reduced and the amplitude of the signal will attenuate too (Signal B).<br/>
+
+<br><img src="images/MetalDetector-Detection-Principle-SignalA.drawio.png" height="300">
+<br><img src="images/MetalDetector-Detection-Principle-SignalB.drawio.png" height="300">
+
+ 
+If the overlapping between Signal A and Signal B occurs in the beginning or end phase, then the Signal A and Signal B amplitude is lowered. When the overlapping occurs in-between the two phases, the Signal A and Signal B amplitude is higher. The signal is perpetually increasing when tracing its envelopes, it reaches the peak value at the midst phase, and returns to zero at the end phase. The maximum difference between the two envelopes must be used when configuring the metal detector.
+<br>When the envelope reaches its peak, the measuring period starts. It stops when the maximum distance between Signal A (green) and Signal B (red) is met, as it is represented in the figure below. This value is compared with the non-metal value and can provide information about the distance for a specific metal (the amplitude varies for different types of metals used, considering the environmental conditions do not change).</br>
+
+ <br><img src="images/MetalDetector-Principle-Envelope.drawio.png" height="400">
+ 
+The solution for metal detector using Q71 family MCU uses the LC sensor, the integrated OPA and the RC circuit to create the envelope of the resulted signal. The CCP1 peripheral is used to generate the PWM signal, with the period set using the Timer 2 (TMR2) peripheral, to charge the capacitor and generate the oscillation with LC circuit. This signal is the input for the integrated OPA with unity gain configuration. The output signal of the OPA is the input for the LC circuit that defines the envelope signal. Using the comparator (CMP) peripheral, the value of the envelope is compared with a fixed voltage set by the Digital-to-Analog Converter (DAC) peripheral, and the TMR1 module counts between the peak of the envelope and the set voltage level, then one GPIO toggles once the set condition is met.
+
+ <br><img src="images/MetalDetector-Block-Diagram.drawio.png" height="600">
+
+Also, the frequency or the period of generated oscillations varies when a metal object interferes with the magnetic field of a metal detector. The frequency or the period of oscillations can be used as secondary information to provide a precise measurement of the distance to the metal object.
+
+## Software Arhitecture
+
+This project has multiple functions, every single one having a name that describes the main purpose of it. There are two types of functions in this code, MCC generated functions and the main purpose of the application:
+
+-	`App_PrepareEnvelope`
+-	`App_ChargingPulseGen`
+-	`App_ThrshldTimeMeas`
+-	`App_CheckEnvelopeThrsld`
+-	`App_ResetTimer`
+-   `App_ThrsldMeasDefaultValue`
+
+The `System_Initialize` function is called at the beginning of the code and includes all the used peripherals initialization that is generated and configured using the MCC Melody. It configures the main clock of the project, the pin management, the CMP, the DAC, the FVR, the OPA, the CCP, and the timers, all those modules being used in development of the project. Other functions generated by MCC Melody for each peripheral will be used in the development.
+
+The `App_PrepareEnvelope` function is the first application related one and it is used to prepare the LC sensor to detect the metal object. The external capacitor is discharging while the PWM is generated, then the external capacitor is going to charge again. The PWM is described by the `App_ChargingPulseGen` function that starts the Timer2 counter and waits until the Timer2 flag in set for a complete PWM cycle then it is cleared.
+
+In the next step, the period that starts at the peak of the envelope and stops when the set threshold is reached is described by the `App_ThrshldTimeMeas` function. A delay of 1 ms is applied to prevent any false spike while charging the external capacitor, then the while function is running to measure the period of interest. The Timer1 starts counting internally when the comparator output is logic low, which means at the peak of the envelope. The function above returns an 16-bit integer that represents the TMR1 counter value that is directly proportional to the measured period and stored in a local variable – `measuredPeriod`.
+
+The on-board LED is used as a response of metal detection. The stored value of period is the parameter of the `App_CheckEnvelopeThrshld` function and it is compared with a previous set threshold if there are no objects in proximity of the LC sensor. If the measured period is lower than the set threshold, the LED turns on and indicates the presence of a metal object, otherwise it will turn off.
+
+In order to calibrate the threshold value for metal detecting, the `App_ThrsldMeasDefaultValue` function is called. This function determines a default threshold period, for a number of cycles set by the user to determine the average value of this threshold. This value can be affected by the difference between values of the external components, so the average value of the threshold will be more precise. The LED will blink until the calibration is fulfilled. To avoid any possible discrepancies, the first value of the measurement will be dismissed and an error calibration factor will be subtracted from the average determined value.
+
+The last used function is `App_ResetTimer` that resets the TMR1 counter value and prepares the timer for a new cycle of measurement.
+
+All the described functions are called in a logic way, in a continuous cycle that is repeated once every 100 ms, and this flowchart is represented using the diagram below.
+
+ <br><img src="images/MetalDetector-Flowchart.drawio.png" height="900">
+
+
+## Setup
+
+MCC is a useful tool of MPLABX that offers an improved and flexible architecture to easily configure devices, peripherals, and libraries and generate code. It visualizes components’ dependencies to simplify development and offers easy maintenance by enabling content versioning at the driver level. The code for this application is generated using the MCC and the following configuration must be made:
+
+1.  Clock Control:
+    - Clock Source: HFINTOSC
+    - HF Internal Clock: 48 MHz
+    - Clock Divider: 1
+    <br><img src="images/MetalDetector-MCC-Clock.PNG" height="400">
+<br>
+
+2. Configuration Bits:
+– WDT Operating Mode: WDT Disabled; SWDTEN ignored
+– The other fields remain default
+
+<br>
+
+3. Pins:
+    - RA1 – Output Pin (OPA1)
+    - RA2 – Output Pin (DAC1)
+    - RA4 – Output Pin (CMP1)
+    - RA5 – Input Pin    (OPA1+)
+    - RB0 – Output Pin (CCP1)
+    - RB3 – Input Pin    (CMP1-)
+    - RC7 – Output Pin (LED)
+    <br><img src="images/MetalDetector-MCC-Pins.PNG" height="300">
+<br>
+
+4. Capture / Compare / PWM Module 1:
+    - Enable CCP: On
+    - CCP Mode: PWM
+    - Select Timer: Timer 2
+    - Duty Cycle (%): 17
+    - CCPR Alignment: Left Aligned
+    <br><img src="images/MetalDetector-MCC-CCP1.PNG" height="400">
+
+<br>
+
+5. Timer 2:
+    - Timer Dependency Selector: TMR2
+    - Enable Timer: On
+    - Control Mode: One Shot
+    - Start/Reset Option: Software Control One Shot
+    - Clock Source: FOSC/4
+    - Enable Clock Sync: On
+    - Prescaler: 1:1
+    - Postscaler: 1:1
+    - Timer Period (s): 0.000002 (2 us)
+    <br><img src="images/MetalDetector-MCC-TMR2.PNG" height="600">
+
+<br>
+
+6. Operational Amplifier 1:
+    - Enable OPA: On
+    - Enable Charge Pump: On
+    - OPA Configuration: Unity Gain Buffer
+    - Positive Channel: OPA1IN+
+    - Positive Source Selection: OPA1IN2+
+    - Hardware Override: On
+    - Override Control High Configuration: Peak detect configuration with unity gain feedback 
+    - Override Control Low Configuration: Peak detect configuration with unity gain feedback 
+    <br><img src="images/MetalDetector-MCC-OPA1.PNG" height="600">
+
+<br>
+
+7. Comparator 1:
+    - Enable Comparator: On
+    - Enable Synchronous Mode: Asynchronous
+    - Enable Comparator Hysteresis: 10 mV Comparator Hysteresis
+    - Positive Input Selection: DAC1 OUT
+    - Negative Input Selection: CIN2-
+    - Output Polarity: Non inverted
+    - Comparator Speed: 30 ns high speed
+    <br><img src="images/MetalDetector-MCC-CMP1.PNG" height="400">
+
+<br>
+
+8. Digital to Analog Convertor 1:
+    - VDD: 3.3
+    - Required Ref (V): 0.08 (80 mV)
+    - DAC Enable: On
+    - DAC Positive Reference Selection: FVR
+    - DAC Negative Reference Selection: VSS
+    - DAC Output Enable Selection: DACOUT1 Enabled and DACOUT2 Disabled
+    <br><img src="images/MetalDetector-MCC-DAC1.PNG" height="400">
+
+<br>
+
+9. Fixed Voltage Reference:
+    - Enable FVR: On
+    - FVR_buffer 2 Gain (to other peripherals): 2x
+    <br><img src="images/MetalDetector-MCC-FVR.PNG" height="300">
+
+<br>
+
+10. Timer 1:
+    - Enable Timer: On
+    - Clock Source: FOSC
+    - Prescaler: 1:1
+    - Timer Period (s): 5x10-8
+    - Period Count: 216
+    - Enable Gate: On
+    - Gate Signal Source: CMP1OUT
+    - Gate Polarity: Low
+    - Timer Dependency Selection: TMR1
+    <br><img src="images/MetalDetector-MCC-TMR1.PNG" height="600">
+
+## Demo
+
+A PWM signal is generated using the CCP peripheral, and the length of it must be equal to half of the period of the oscillating signal. To define the period of the PWM signal, the formula of the resonant frequency of the LC sensor must be used to calculate the period signal. The figure below illustrates the length of the PWM (violet) compared to the oscillating signal (blue).
+
+**Note**: The period signal can vary due to the tolerance of the components.
+
+<br><img src="images/MetalDetector-Results-1.PNG" height="300">
+
+The oscillating signal is described by the specific formula for the LC parallel circuit. The signal resulted from the OPA is filtered using the RC circuit that defines the RC Time Constant. This RC time constant specifies a charge rate. The signal from RC circuit is the envelope that processes in order to determine the nature of an object. The following figure presents the oscillating signal (blue), the envelope (turquoise) and the comparator output (violet) with no metal object around the LC sensor. The output of the comparator represents the necessary amount of time for the envelope to drop the set threshold.
+
+<br><img src="images/MetalDetector-Results-2.PNG" height="300"> 
+
+If a metal object is in the proximity of the LC sensor, the amplitude, the period, and the decay rate decreases resulting in significant differences. The output of the comparator shows a smaller time than previously, resulting that a metal object is in the proximity of the LC sensor.
+
+<br><img src="images/MetalDetector-Results-3.PNG" height="300">
 
 ## Summary
 
-<!-- Summarize what the example has shown -->
+This application demonstrates the capabilities of the OPA found on the Q71 family of devices, and the other peripherals used. The sensor used to detect metal objects is represented by a basic parallel circuit with an inductor and a capacitance.
+
+A PWM signal is driven to the LC sensor, which produces a damping signal processed by the OPA configured in peak detection mode, the output being an envelope. The signal from the OPA is filtered using an RC parallel circuit, so the resulted envelope will follow all the peaks of the oscillating signal. All the used values in this project are directly proportional with the values of the external components and their tolerances.
+
+
+##  How to Program the Curiosity Nano Board
+
+This chapter demonstrates how to use the MPLAB® X IDE to program a PIC® device with an Example_Project.X. This is applicable to other projects.
+
+1.  Connect the board to the PC.
+
+2.  Open the Example_Project.X project in MPLAB® X IDE.
+
+3.  Set the Example_Project.X project as main project.
+    <br>Right click the project in the **Projects** tab and click **Set as Main Project**.
+    <br><img src="images/Program_Set_as_Main_Project.PNG" width="600">
+
+4.  Clean and build the Example_Project.X project.
+    <br>Right click the **Example_Project.X** project and select **Clean and Build**.
+    <br><img src="images/Program_Clean_and_Build.PNG" width="600">
+
+5.  Select **PICxxxxx Curiosity Nano** in the Connected Hardware Tool section of the project settings:
+    <br>Right click the project and click **Properties**.
+    <br>Click the arrow under the Connected Hardware Tool.
+    <br>Select **PICxxxxx Curiosity Nano** (click the **SN**), click **Apply** and then click **OK**:
+    <br><img src="images/Program_Tool_Selection.jpg" width="600">
+
+6.  Program the project to the board.
+    <br>Right click the project and click **Make and Program Device**.
+    <br><img src="images/Program_Make_and_Program_Device.PNG" width="600">
+
+<br>
+
+- - - 
+## Menu
+- [Back to Top](#proximity-metal-detector-using-integrated-op-amp-example-using-pic18f56q71-microcontroller-with-mcc-melody)
+- [Back to Related Documentation](#related-documentation)
+- [Back to Software Used](#software-used)
+- [Back to Hardware Used](#hardware-used)
+- [Back to Operation](#operation)
+- [Back to Working Principle](#working-principle)
+- [Back to Software Arhitecture](#software-arhitecture)
+- [Back to Setup](#setup)
+- [Back to Demo](#demo)
+- [Back to Summary](#summary)
+- [Back to How to Program the Curiosity Nano Board](#how-to-program-the-curiosity-nano-board)
+- - - 
