@@ -219,7 +219,7 @@ If a metal object is in the proximity of the LC sensor, the amplitude, the perio
 
 This application demonstrates the capabilities of the OPA found on the Q71 family of devices, and the other peripherals used. The sensor used to detect metal objects is represented by a basic parallel circuit with an inductor and a capacitance.
 
-A PWM signal is driven to the LC sensor, which produces a damping signal processed by the OPA configured in peak detection mode, the output being an envelope. The signal from the OPA is filtered using an RC parallel circuit, so the resulted envelope will follow all the peaks of the oscillating signal. All the used values in this project are directly proportional with the values of the external components and their tolerances.
+A PWM signal is driven to the LC sensor, which produces a damping signal processed by the OPA configured in Peak Detect mode, the output being an envelope. The signal from the OPA is filtered using an RC parallel circuit, so the resulted envelope will follow all the peaks of the oscillating signal. All the used values in this project are directly proportional with the values of the external components and their tolerances.
 
 
 ##  How to Program the Curiosity Nano Board
