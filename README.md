@@ -2,7 +2,7 @@
 
 <a href="https://www.microchip.com" rel="nofollow"><img src="images/microchip.png" alt="MCHP" width="300"/></a>
 
-# Proximity Metal Detector Using an Operational Amplifier (OPA) — User Case for PIC18F56Q71 Microcontroller with MCC Melody 
+# Proximity Metal Detector Using an Operational Amplifier (OPA) — Use Case for PIC18F56Q71 Microcontroller with MCC Melody 
 
 This application uses an inductive sensor consisting of one capacitor and one inductive sensor placed in parallel. This application note shows how a proximity metal detector can be designed using the integrated OPA of the PIC18F Q71 family.
 
@@ -252,7 +252,7 @@ This chapter demonstrates how to use the MPLAB X IDE to program a PIC® device w
 
 - - - 
 ## Menu
-- [Back to Top](#proximity-metal-detector-using-an-operational-amplifier-opa--user-case-for-pic18f56q71-microcontroller-with-mcc-melody)
+- [Back to Top](#proximity-metal-detector-using-an-operational-amplifier-opa--use-case-for-pic18f56q71-microcontroller-with-mcc-melody)
 - [Back to Related Documentation](#related-documentation)
 - [Back to Software Used](#software-used)
 - [Back to Hardware Used](#hardware-used)
