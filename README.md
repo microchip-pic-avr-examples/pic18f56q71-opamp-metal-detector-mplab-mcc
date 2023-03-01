@@ -17,15 +17,14 @@ More details and code examples on the PIC18F56Q71 can be found at the following 
 
 ## Software Used
 
-- [MPLAB® X IDE](http://www.microchip.com/mplab/mplab-x-ide) v6.00 or newer
-- [MPLAB® X IPE](https://www.microchip.com/en-us/tools-resources/production/mplab-integrated-programming-environment) v6.00 or newer
-- [MPLAB® XC8](http://www.microchip.com/mplab/compilers) v2.40 or newer
-- [PIC18F-Q Series Device Pack](https://packs.download.microchip.com/) v1.14.237 or newer
+- [MPLAB® X IDE v6.05 or newer](http://www.microchip.com/mplab/mplab-x-ide)
+- [MPLAB® XC8 v2.41 or newer](http://www.microchip.com/mplab/compilers)
+- [PIC18F-Q Series Device Pack v1.16.368 or newer](https://packs.download.microchip.com/)
 
 ## Hardware Used
 
 - The PIC18F56Q71 Curiosity Nano Development Board is used as a test platform:
-    <br><img src="images/PIC18F56Q71.png">
+    <br><img src="images/pic18f56q71_cnano_board.png" width="800">
 
 - Curiosity Nano Adapter:
     <br><img src="images/Curiosity-Nano-Adapter.jpg" height="400">
@@ -35,7 +34,7 @@ More details and code examples on the PIC18F56Q71 can be found at the following 
 
 - 1x 1N4148 Diode
 
-- 2x 10 µH Inductor
+- 1x 10 µH Inductor
 
 - 2x 1 kOhm Resistor
 
@@ -43,7 +42,7 @@ More details and code examples on the PIC18F56Q71 can be found at the following 
 
 ## Operation
 
-To program the Curiosity Nano board with this MPLAB® X project, follow the steps provided in the [How to Program the Curiosity Nano Board](#how-to-program-the-curiosity-nano-board) chapter.<br><br>
+To program the Curiosity Nano board with this MPLAB X project, follow the steps provided in the [How to Program the Curiosity Nano Board](#how-to-program-the-curiosity-nano-board) chapter.<br><br>
 
 ## Working Principle
 
@@ -65,7 +64,7 @@ The solution for metal detector using Q71 family MCU uses the LC sensor, the int
 
 Also, the frequency or the period of generated oscillations varies when a metal object interferes with the magnetic field of a metal detector. The frequency or the period of oscillations can be used as secondary information to provide a precise measurement of the distance to the metal object.
 
-## Software Arhitecture
+## Software Architecture
 
 This project has multiple functions, every single one having a name that describes the main purpose of it. There are two types of functions in this code, MPLAB® Code Configurator (MCC) generated functions and the main purpose of the application:
 
@@ -225,11 +224,11 @@ A PWM signal is driven to the LC sensor, which produces a damping signal process
 
 ##  How to Program the Curiosity Nano Board
 
-This chapter demonstrates how to use the MPLAB® X IDE to program a PIC® device with an Example_Project.X. This is applicable to other projects.
+This chapter demonstrates how to use the MPLAB X IDE to program a PIC® device with an Example_Project.X. This is applicable to other projects.
 
 1.  Connect the board to the PC.
 
-2.  Open the Example_Project.X project in MPLAB® X IDE.
+2.  Open the Example_Project.X project in MPLAB X IDE.
 
 3.  Set the Example_Project.X project as main project.
     <br>Right click the project in the **Projects** tab and click **Set as Main Project**.
@@ -253,13 +252,13 @@ This chapter demonstrates how to use the MPLAB® X IDE to program a PIC® device
 
 - - - 
 ## Menu
-- [Back to Top](#proximity-metal-detector-using-integrated-op-amp-example-using-pic18f56q71-microcontroller-with-mcc-melody)
+- [Back to Top](#proximity-metal-detector-using-an-operational-amplifier-opa--user-case-for-pic18f56q71-microcontroller-with-mcc-melody)
 - [Back to Related Documentation](#related-documentation)
 - [Back to Software Used](#software-used)
 - [Back to Hardware Used](#hardware-used)
 - [Back to Operation](#operation)
 - [Back to Working Principle](#working-principle)
-- [Back to Software Arhitecture](#software-arhitecture)
+- [Back to Software Architecture](#software-architecture)
 - [Back to Setup](#setup)
 - [Back to Demo](#demo)
 - [Back to Summary](#summary)

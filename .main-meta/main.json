@@ -4,27 +4,27 @@
     "content": {
         "metaDataVersion": "1.3.0",
         "name": "com.microchip.mcu8.mplabx.project.pic18f56q71-opamp-metal-detector-mplab-mcc",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "displayName": "Proximity Metal Detector Using an Operational Amplifier (OPA) — User Case for PIC18F56Q71 Microcontroller with MCC Melody",
         "projectName": "pic18f56q71-opamp-metal-detector-mplab-mcc",
         "shortDescription": "Proximity Metal Detector Using an Operational Amplifier (OPA)  User Case for PIC18F56Q71 Microcontroller with MCC Melody",
         "ide": {
             "name": "MPLAB X",
-            "semverRange": ">=6.0.0"
+            "semverRange": ">=6.5.0"
         },
         "compiler": [
             {
                 "name": "XC8",
-                "semverRange": "^2.40.0"
+                "semverRange": "^2.41.0"
             }
         ],
         "dfp": {
             "name": "PIC18F-Q_DFP",
-            "semverRange": "^1.15.242"
+            "semverRange": "^1.16.368"
         },
         "configurator": {
             "name": "MCC",
-            "semverRange": ">=5.1.13"
+            "semverRange": ">=5.2.2"
         },
         "device": {
             "metaDataVersion": "1.0.0",
@@ -38,17 +38,17 @@
         },
         "author": "Teodor-Emilian Petre",
         "peripherals": [
-		"OPAMP",
-		"CCP",
-		"TMR1",
-		"TMR2",
-		"GPIO",
-		"DAC"
+			"OPAMP",
+			"CCP",
+			"TMR1",
+			"TMR2",
+			"GPIO",
+			"DAC"
 		],
         "keywords": [
-		"Melody",
-		"OPAMP",
-		"Proximity"
+			"Melody",
+			"OPAMP",
+			"Proximity"
 		],
         "additionalData": {
             "longDescription": {

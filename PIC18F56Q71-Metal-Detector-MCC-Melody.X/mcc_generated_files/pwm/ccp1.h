@@ -1,26 +1,16 @@
 /**
-  PWM1 Generated Driver File
-
-  @Company
-    Microchip Technology Inc.
-
-  @File Name
-    pwm1.h
-
-  @Summary
-    This is the generated driver implementation file for the PWM1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
-
-  @Description
-    This header file provides implementations for driver APIs for PWM1.
-    Generation Information :
-        Driver Version    :  2.01
-    The generated drivers are tested against the following:
-        Compiler          :  XC8 v2.20 and above
-        MPLAB             :  MPLABX v5.40
+ * PWM1 Generated Driver API Header File.
+ * 
+ * @file ccp1.h
+ * 
+ * @defgroup pwm1 PWM1
+ * 
+ * @brief This file contains the API prototypes for the PWM1 module.
+ *
+ * @version PWM1 Driver Version 2.0.2
 */
-
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -51,111 +41,32 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#ifdef __cplusplus  // Provide C++ Compatibility
-
-    extern "C" {
-
-#endif
-
-/**
-  Section: PWM1 Module APIs
-*/
-
-/**
-  @Summary
-    Initializes the PWM1
-
-  @Description
-    This routine initializes the PWM1 module.
-    This routine must be called before any other PWM1 routine is called.
-    This routine should only be called once during system initialization.
-
-  @Preconditions
-    None
-
-  @Param
-    None
-
-  @Returns
-    None
-
-  @Comment
-    
-
- @Example
-    <code>
-    uint16_t dutycycle;
-
-    PWM1_Initialize();
-	  PWM1_LoadDutyValue(dutycycle);
-    </code>
+ /**
+ * @ingroup pwm1
+ * @brief Initializes the CCP1 module. This is called only once before calling other CCP1 APIs.
+ * @param None.
+ * @return None.
  */
 void PWM1_Initialize(void);
 
 /**
-  @Summary
-    Loads 16-bit duty cycle.
-
-  @Description
-    This routine loads the 16 bit duty cycle value.
-
-  @Preconditions
-    PWM1_Initialize() function should have been called
-    before calling this function.
-
-  @Param
-    Pass 16bit duty cycle value.
-
-  @Returns
-    None
-
-  @Example
-    <code>
-    uint16_t dutycycle;
-
-    PWM1_Initialize();
-    PWM1_LoadDutyValue(dutycycle);
-    </code>
-*/
+ * @ingroup pwm1
+ * @brief Loads the 16-bit duty cycle value.
+ * @pre PWM1_Initialize() is already called.
+ * @param dutyValue - 16-bit duty cycle value.
+ * @return None.
+ */
 void PWM1_LoadDutyValue(uint16_t dutyValue);
 
 /**
-  @Summary
-    Read pwm output status.
-
-  @Description
-    This routine returns the pwm output status.
-
-  @Preconditions
-    PWM1_Initialize() function should have been
-    called before calling this function.
-
-  @Param
-    None
-
-  @Returns
-    true : output high
-    false: output low
-
-  @Example
-    <code>
-    uint16_t dutyCycle;
-    bool status;
-    PWM1_Initialize();
-    PWM1_LoadDutyValue(dutyCycle);
-    while(1)
-    {
-            status = PWM1_OutputStatusGet();
-    }
-    </code>
-*/
+ * @ingroup pwm1
+ * @brief Returns the PWM output status.
+ * @pre PWM1_Initialize() is already called.
+ * @param None.
+ * @retval True - CCP1 PWM output is high
+ * @retval False - CCP1 PWM output is low
+ */
 bool PWM1_OutputStatusGet(void);
-
-#ifdef __cplusplus  // Provide C++ Compatibility
-
-    }
-
-#endif
 
 #endif //PWM1_H
 /**

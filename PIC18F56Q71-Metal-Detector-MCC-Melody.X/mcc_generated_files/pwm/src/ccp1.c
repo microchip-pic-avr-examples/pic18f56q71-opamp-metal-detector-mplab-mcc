@@ -1,26 +1,16 @@
 /**
-  PWM1 Generated Driver File
-
-  @Company
-    Microchip Technology Inc.
-
-  @File Name
-    pwm1.c
-
-  @Summary
-    This is the generated driver implementation file for the PWM1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
-
-  @Description
-    This source file provides implementations for driver APIs for PWM1.
-    Generation Information :
-        Driver Version    :  2.01
-    The generated drivers are tested against the following:
-        Compiler          :  XC8 v2.20 and above
-         MPLAB 	          :  MPLABX v5.40
+ * PWM1 Generated Driver File.
+ * 
+ * @file ccp1.c
+ * 
+ * @ingroup pwm1
+ * 
+ * @brief This file contains the API implementations for the PWM1 driver.
+ *
+ * @version PWM1 Driver Version 2.0.2
 */
-
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -82,13 +72,13 @@ void PWM1_LoadDutyValue(uint16_t dutyValue)
     if(CCP1CONbits.FMT)
     {
         dutyValue <<= 6;
-        CCPR1H = dutyValue >> 8;
-        CCPR1L = dutyValue;
+        CCPR1H = (uint8_t)(dutyValue >> 8);
+        CCPR1L = (uint8_t)dutyValue;
     }
     else
     {
-        CCPR1H = dutyValue >> 8;
-        CCPR1L = dutyValue;
+        CCPR1H = (uint8_t)(dutyValue >> 8);
+        CCPR1L = (uint8_t)dutyValue;
     }
 }
 
